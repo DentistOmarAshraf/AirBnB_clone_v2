@@ -130,7 +130,11 @@ class HBNBCommand(cmd.Cmd):
             param = args[1:]
             for x in param:
                 key = x[:x.find('=')]
-                value = x[x.find('=')+1:].strip('"')
+                value = x[x.find('=')+1:]
+                if value[0] == '"':
+                    value = value[1:]
+                if value[len(value)-1] == '"':
+                    value = value[:len(value)-1]
                 if value and len(value) != 0:
                     if '_' in value:
                         value = value.replace("_", " ")
