@@ -136,6 +136,8 @@ class HBNBCommand(cmd.Cmd):
                 if value[len(value)-1] == '"':
                     value = value[:len(value)-1]
                 if value and len(value) != 0:
+                    if '"' in value:
+                        value = value.replace('"', '')
                     if '_' in value:
                         value = value.replace("_", " ")
                     if '.' in value:
