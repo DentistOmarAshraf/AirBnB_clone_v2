@@ -131,15 +131,14 @@ class HBNBCommand(cmd.Cmd):
             for x in param:
                 key = x[:x.find('=')]
                 value = x[x.find('=')+1:].strip('"')
-
-                if '_' in value:
-                    value = value.replace("_", " ")
-                if '.' in value:
-                    value = float(value)
-                elif value[0] != '0' and value.isdigit():
-                    value = int(value)
-
-                setattr(new_instance, key, value)
+                if value and len(value) != 0:
+                    if '_' in value:
+                        value = value.replace("_", " ")
+                    if '.' in value:
+                        value = float(value)
+                    elif value[0] != '0' and value.isdigit():
+                        value = int(value)
+                    setattr(new_instance, key, value)
 
         storage.save()
         print(new_instance.id)
