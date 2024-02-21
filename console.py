@@ -132,12 +132,12 @@ class HBNBCommand(cmd.Cmd):
                 key = x[:x.find('=')]
                 value = x[x.find('=')+1:].strip('"')
 
-                try:
+                if '_' in value:
+                    value = value.replace("_", " ")
+                if '.' in value:
                     value = float(value)
-                    if value.is_integer():
-                        value = int(value)
-                except Exception:
-                    pass
+                elif value[0] != '0' and value.isdigit():
+                    value = int(value)
 
                 setattr(new_instance, key, value)
 
