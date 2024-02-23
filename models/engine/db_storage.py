@@ -62,7 +62,7 @@ class DBstorage:
 
     def delete(self, obj=None):
         """Delete from data base"""
-        if obj is None:
+        if obj:
             DBstorage.__session.delete(obj)
             DBstorage.__session.commit()
 
