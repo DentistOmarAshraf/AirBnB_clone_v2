@@ -39,7 +39,7 @@ class DBstorage:
         """Return Data from Database According to class"""
         data = {}
         if cls is None:
-            classes = [State, City, User, Place, User, Review]
+            classes = [State, City, User, Place, User, Review, Amenity]
             q_obj = []
             for cl in classes:
                 q_obj += DBstorage.__session.query(cl).all()
