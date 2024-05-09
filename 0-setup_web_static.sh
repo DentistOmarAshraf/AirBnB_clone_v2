@@ -24,12 +24,19 @@ Html='<html>
    </body>
 </html>'
 
+touch /data/web_static/releases/test/index.html
 echo ${Html} >/data/web_static/releases/test/index.html
-ln -s /data/web_static/releases/test /data/web_static/current
+
+if [ ! -d "/data/web_static/current" ]
+then
+	ln -s /data/web_static/releases/test /data/web_static/current
+fi
+
 chown -R ubuntu:ubuntu /data/
 
 to_rep='server_name _;'
 rep="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t\tdefault_type text/html;\n\t}"
 
-sed -i "s|${to_rep}|${to_rep}${rep}|" /etc/nginx/sites-avalibale/default
+sed -i "s|${to_rep}|${to_rep}${rep}|" /etc/nginx/sites-available/default
+
 service nginx restart
