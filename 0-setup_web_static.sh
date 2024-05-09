@@ -10,9 +10,11 @@ fi
 
 if [[ -d "/data/web_static/releases/test/" ]];then
 	mkdir -p '/data/web_static/releses/test'
+fi
 
 if [[ -d "/data/web_static/shared" ]];then
 	mkdir -p '/data/web_static/shared'
+fi
 
 Html='<html>
   <head>
