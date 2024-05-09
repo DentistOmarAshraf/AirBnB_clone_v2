@@ -26,7 +26,7 @@ Html='<html>
 
 echo ${Html} >/data/web_static/releses/test/index.html
 
-if [ ! -d "/data/web_static/current" ]
+if [ ! -h "/data/web_static/current" ]
 then
 	ln -s /data/web_static/releases/test /data/web_static/current
 fi
