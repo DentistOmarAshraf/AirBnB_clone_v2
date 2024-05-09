@@ -27,10 +27,7 @@ ln -s /data/web_static/releases/test /data/web_static/current
 chown -R ubuntu:ubuntu /data/
 
 to_rep='server_name _;'
-rep='\tlocation /hbnb_static {
-		alias /data/web_static/current/;
-		default_type text/html;
-	}'
+rep="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t\tdefault_type text/html;\n\t}"
 
 sed -i "s|${to_rep}|${to_rep}${rep}|" /etc/nginx/sites-avalibale/default
 service nginx restart
