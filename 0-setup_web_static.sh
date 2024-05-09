@@ -16,10 +16,6 @@ if [[ ! -d "/data/web_static/shared" ]];then
 	mkdir -p '/data/web_static/shared'
 fi
 
-if [[ ! -d "/data/web_static/current/" ]]
-	mkdir -p '/data/web_static/current/'
-fi
-
 Html='<html>
   <head>
   </head>
@@ -28,7 +24,7 @@ Html='<html>
    </body>
 </html>'
 
-echo ${Html} >/data/web_static/releses/test/index.html
+echo "${Html}" >/data/web_static/releses/test/index.html
 
 if [ ! -h "/data/web_static/current" ]
 then
