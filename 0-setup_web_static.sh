@@ -9,11 +9,15 @@ then
 fi
 
 if [[ ! -d "/data/web_static/releases/test/" ]];then
-	mkdir -p '/data/web_static/releses/test'
+	mkdir -p '/data/web_static/releases/test'
 fi
 
 if [[ ! -d "/data/web_static/shared" ]];then
 	mkdir -p '/data/web_static/shared'
+fi
+
+if [[ ! -d "/data/web_static/current/" ]]
+	mkdir -p '/data/web_static/current/'
 fi
 
 Html='<html>
@@ -28,6 +32,9 @@ echo ${Html} >/data/web_static/releses/test/index.html
 
 if [ ! -h "/data/web_static/current" ]
 then
+	ln -s /data/web_static/releases/test /data/web_static/current
+else
+	rm /data/web_static/current
 	ln -s /data/web_static/releases/test /data/web_static/current
 fi
 
