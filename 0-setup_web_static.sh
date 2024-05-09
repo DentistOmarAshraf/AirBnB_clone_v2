@@ -8,11 +8,11 @@ then
 	apt install nginx -y
 fi
 
-if [[ -d "/data/web_static/releases/test/" ]];then
+if [[ ! -d "/data/web_static/releases/test/" ]];then
 	mkdir -p '/data/web_static/releses/test'
 fi
 
-if [[ -d "/data/web_static/shared" ]];then
+if [[ ! -d "/data/web_static/shared" ]];then
 	mkdir -p '/data/web_static/shared'
 fi
 
