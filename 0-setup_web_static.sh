@@ -24,8 +24,7 @@ Html='<html>
    </body>
 </html>'
 
-touch /data/web_static/releases/test/index.html
-echo ${Html} >/data/web_static/releases/test/index.html
+echo ${Html} >/data/web_static/releses/test/index.html
 
 if [ ! -d "/data/web_static/current" ]
 then
