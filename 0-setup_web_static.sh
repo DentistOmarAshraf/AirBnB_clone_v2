@@ -32,5 +32,5 @@ rep='\tlocation /hbnb_static {
 		default_type text/html;
 	}'
 
-sed -i "s|${to_rep}|${to_rep}${rep}" /etc/nginx/sites-avalibale/default
+sed -i "s|${to_rep}|${to_rep}${rep}|" /etc/nginx/sites-avalibale/default
 service nginx restart
