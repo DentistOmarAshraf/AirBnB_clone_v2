@@ -13,15 +13,16 @@ def do_pack():
     with hide("running", "output"):
         full_date = local("stat -c '%y' web_static", capture=True).stdout
 
-    # here x to change date format from (year-month-day)
-    # to (yearmonthday)
+    """here x to change date format from (year-month-day)
+    to (yearmonthday)"""
+
     x = ""
     for i in full_date:
         if i == '.':
             break
         if i.isnumeric():
             x = x + i
-    
+
     print(f"Packing web_static to versions/web_static_{x}.tgz")
     with hide('running', 'output'):
         local("mkdir -p versions")
