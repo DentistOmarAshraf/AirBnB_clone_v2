@@ -6,6 +6,7 @@ Using Fabric to archive webstatic file
 from fabric.api import *
 from datetime import datetime
 
+
 def do_pack():
     """
     do_pack - order to create archive of web_static folder
