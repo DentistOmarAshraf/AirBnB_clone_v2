@@ -33,9 +33,9 @@ def do_deploy(archive_path=None):
     base_name = os.path.basename(archive_path)
     wout_exet = os.path.splitext(base_name)[0]
     put(archive_path, "/tmp/")
-    run("mkdir -p /data/web_static/releases/{}"
+    run("mkdir -p /data/web_static/releases/{}/"
         .format(wout_exet))
-    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}"
+    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
         .format(base_name, wout_exet))
     run("rm /tmp/{}"
         .format(base_name))
