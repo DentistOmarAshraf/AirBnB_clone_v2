@@ -38,6 +38,9 @@ def do_deploy(archive_path):
     run(f"mkdir -p /data/web_static/releases/{wout_exet}")
     run(f"tar -xzf /tmp/{base_name} -C /data/web_static/releases/{wout_exet}")
     run(f"rm /tmp/{base_name}")
+    x = f"/data/web_static/releases/{wout_exet}/web_static/"
+    run(f"mv {x}/* /data/web_static/releases/{wout_exet}")
+    run(f"rm -fr {x}")
     run("rm /data/web_static/current")
     symb_link = "/data/web_static/current"
     run(f"ln -s /data/web_static/releases/{wout_exet} {symb_link}")
