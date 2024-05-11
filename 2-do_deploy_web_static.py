@@ -9,8 +9,6 @@ import os
 
 
 env.hosts = ['54.174.46.224', '54.146.95.95']
-env.user = 'ubuntu'
-env.key_file = '/home/vagrant/.ssh/id_rsa.pub'
 
 
 def do_pack():
