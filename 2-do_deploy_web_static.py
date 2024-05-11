@@ -31,20 +31,16 @@ def do_deploy(archive_path):
     """
     if not os.path.exists(archive_path):
         return False
-    try:
-        base_name = os.path.basename(archive_path)
-        wout_exet = os.path.splitext(base_name)[0]
-        put(archive_path, "/tmp/")
-        run(f"mkdir -p /data/web_static/releases/{wout_exet}")
-        run(f"tar -xzf /tmp/{base_name} -C /data/web_static/releases/{wout_exet}")
-        run(f"rm /tmp/{base_name}")
-        x = f"/data/web_static/releases/{wout_exet}/web_static/"
-        run(f"mv {x}/* /data/web_static/releases/{wout_exet}")
-        run(f"rm -fr {x}")
-        run("rm /data/web_static/current")
-        symb_link = "/data/web_static/current"
-        run(f"ln -s /data/web_static/releases/{wout_exet} {symb_link}")
 
-        return True
-    except:
-        return False
+    base_name = os.path.basename(archive_path)
+    wout_exet = os.path.splitext(base_name)[0]
+    put(archive_path, "/tmp/")
+    run(f"mkdir -p /data/web_static/releases/{wout_exet}")
+    run(f"tar -xzf /tmp/{base_name} -C /data/web_static/releases/{wout_exet}")
+    run(f"rm /tmp/{base_name}")
+    x = f"/data/web_static/releases/{wout_exet}/web_static/"
+    run(f"mv {x}/* /data/web_static/releases/{wout_exet}")
+    run(f"rm -fr {x}")
+    run("rm -fr /data/web_static/current")
+    symb_link = "/data/web_static/current"
+    run(f"ln -s /data/web_static/releases/{wout_exet} {symb_link}")
