@@ -42,3 +42,4 @@ def do_deploy(archive_path):
     run("rm -fr /data/web_static/current")
     symb_link = "/data/web_static/current"
     run(f"ln -s /data/web_static/releases/{wout_exet} {symb_link}")
+    run("service nginx reload")
