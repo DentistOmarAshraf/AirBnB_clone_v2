@@ -23,11 +23,11 @@ def do_pack():
     local(f"tar -cvzf versions/web_static_{x}.tgz web_static")
 
 
-def do_deploy(archive_path):
+def do_deploy(archive_path=None):
     """
     do_deploy - deploy archeived files
     """
-    if not os.path.exists(archive_path):
+    if not archive_path or  not os.path.isfile(archive_path):
         return False
 
     base_name = os.path.basename(archive_path)
@@ -42,4 +42,5 @@ def do_deploy(archive_path):
     run("rm -fr /data/web_static/current")
     symb_link = "/data/web_static/current"
     run(f"ln -s /data/web_static/releases/{wout_exet} {symb_link}")
-    run("service nginx reload")
+    run("sudo service nginx reload")
+    print("New version deployed!")
