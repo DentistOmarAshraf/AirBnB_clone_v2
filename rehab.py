@@ -12,6 +12,6 @@ def rehab():
         sudo("rm -r /data/")
     except:
         pass
-    sudo("sed -i 's|location /hbnb_static {||")
+    sudo("/home/ubuntu/AirBnB_clone_v2/./)
 
     sudo("/home/ubuntu/AirBnB_clone_v2/./0-setup_web_static.sh")
