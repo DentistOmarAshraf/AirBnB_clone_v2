@@ -27,7 +27,7 @@ def do_deploy(archive_path=None):
     """
     do_deploy - deploy archeived files
     """
-    if not archive_path or  not os.path.isfile(archive_path):
+    if not archive_path or not os.path.isfile(archive_path):
         return False
 
     base_name = os.path.basename(archive_path)
