@@ -57,5 +57,4 @@ def do_deploy(archive_path=None):
         .format(wout_exet), local)
 
 
-execute(do_pack)
 execute(do_deploy)
