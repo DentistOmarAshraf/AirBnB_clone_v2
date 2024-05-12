@@ -40,6 +40,10 @@ def do_deploy(archive_path=None):
     run("rm /tmp/{}"
         .format(base_name))
     with cd("/data/web_static/releases/"):
+        run("chmod ugo+x {}/web_static/*.html"
+            .format(wout_exet))
+        run("chmod g-w {}/web_static/*.html"
+            .format(wout_exet))
         run("mv {}/web_static/* {}/"
             .format(wout_exet, wout_exet))
         run("rm -rf {}/web_static"
