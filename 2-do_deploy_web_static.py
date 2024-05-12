@@ -55,3 +55,7 @@ def do_deploy(archive_path=None):
     run("rm -fr /data/web_static/current", local)
     run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
         .format(wout_exet), local)
+
+
+execute(do_pack)
+execute(do_deploy)
