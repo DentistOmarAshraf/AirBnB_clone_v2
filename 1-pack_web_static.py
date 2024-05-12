@@ -16,4 +16,8 @@ def do_pack():
     print(f"Packing web_static to versions/web_static_{x}.tgz")
     with hide("running", "output"):
         local("mkdir -p versions")
-    local(f"tar -cvzf versions/web_static_{x}.tgz web_static")
+    res = local(f"tar -cvzf versions/web_static_{x}.tgz web_static")
+
+    if not result.failed:
+        full_path = f"versions/web_static_{x}.tgz"
+        return (full_path)

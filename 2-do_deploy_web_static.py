@@ -22,6 +22,10 @@ def do_pack():
         local("mkdir -p versions")
     local(f"tar -cvzf versions/web_static_{x}.tgz web_static")
 
+    if not result.failed:
+        full_path = f"versions/web_static_{x}.tgz"
+        return (full_path)
+
 
 def do_deploy(archive_path=None):
     """
