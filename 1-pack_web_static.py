@@ -18,6 +18,10 @@ def do_pack():
         local("mkdir -p versions")
     res = local(f"tar -cvzf versions/web_static_{x}.tgz web_static")
 
-    if not result.failed:
+    if not res.failed:
         full_path = f"versions/web_static_{x}.tgz"
         return (full_path)
+    return None
+
+
+execute(do_pack)
