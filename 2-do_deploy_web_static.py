@@ -33,32 +33,40 @@ def do_deploy(archive_path=None):
     """
     if not archive_path or not os.path.isfile(archive_path):
         return False
-    local = False
+
+    loc = False
+    func = run
     ip_address = os.popen("curl -s ifconfig.me").read()
     if ip_address in env.hosts:
-        local = True
+        loc = True
+        func = local
 
     base_name = os.path.basename(archive_path)
     wout_exet = os.path.splitext(base_name)[0]
-    put(archive_path, "/tmp/", local)
-    run("mkdir -p /data/web_static/releases/{}/"
-        .format(wout_exet), local)
-    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
-        .format(base_name, wout_exet), local)
-    run("rm /tmp/{}"
-        .format(base_name), local)
-    with cd("/data/web_static/releases/"):
-        run("chmod ugo+x {}/web_static/*.html"
-            .format(wout_exet), local)
-        run("chmod g-w {}/web_static/*.html"
-            .format(wout_exet), local)
-        run("mv {}/web_static/* {}/"
-            .format(wout_exet, wout_exet), local)
-        run("rm -rf {}/web_static"
-            .format(wout_exet), local)
-    run("rm -fr /data/web_static/current", local)
-    run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
-        .format(wout_exet), local)
 
+    if not loc:
+        put(archive_path, "/tmp/", local)
+    else:
+        local("cp {} /tmp/".format(archive_path))
 
-execute(do_deploy)
+    func("mkdir -p /data/web_static/releases/{}/"
+         .format(wout_exet))
+    func("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
+         .format(base_name, wout_exet))
+    func("rm /tmp/{}"
+         .format(base_name))
+
+    str_1 = "/data/web_static/releases/"
+    str_2 = f"{wout_exet}"
+    str_3 = "/web_static/*.html"
+
+    func(f"chmod ugo+x {str_1}{str_2}{str_3}")
+    func(f"chmod g-w {str_1}{str_2}{str_3}")
+    func(f"mv {str_1}{str_2}/web_static/* {str_1}{str_2}/")
+    func(f"rm -rf {str_1}{str_2}/web_static")
+    func("rm -rf /data/web_static/current")
+    func(f"ln -s {str_1}{str_2} /data/web_static/current")
+
+if __name__ == "__main__":
+    path = execute(do_pack)
+    execute(do_deploy, archive_path=path["<local-only>"])
