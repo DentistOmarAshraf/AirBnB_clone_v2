@@ -25,8 +25,11 @@ def slash(text):
     return f"C {text.replace('_',' ')}"
 
 
+@app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def slash_2(text):
+def slash_2(text=None):
+    if not text:
+        return "Python is cool"
     return f"Python {text.replace('_',' ')}"
 
 
