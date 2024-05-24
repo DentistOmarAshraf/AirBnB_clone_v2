@@ -71,3 +71,7 @@ class DBstorage:
         Base.metadata.create_all(DBstorage.__engine)
         Session = sessionmaker(bind=DBstorage.__engine, expire_on_commit=False)
         DBstorage.__session = scoped_session(Session)
+
+    def close(self):
+        """Remove Current Session"""
+        DBstorage.__session.remove()

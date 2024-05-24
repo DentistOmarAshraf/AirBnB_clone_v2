@@ -63,3 +63,7 @@ class FileStorage:
                     del (FileStorage.__objects[key])
                     FileStorage.save(self)
                     break
+
+    def close(self):
+        """call it to reload Json Data"""
+        self.reload()
