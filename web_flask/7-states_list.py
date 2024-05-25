@@ -15,17 +15,8 @@ def states_list():
     """
     rendering state_id and state_name
     """
-    all_states = storage.all(State)  # {"stateName.id" : <state_obj>}
-
-    data = {}
-    for k, v in all_states.items():
-        state_id = v.id
-        state_name = v.name
-        data[state_id] = state_name
-
-    data = dict(sorted(data.items(), key=lambda item: item[1]))
-
-    return render_template("7-states_list.html", data=data)
+    states = sorted(list(storage.all(State).values()), key=lambda x: x.name)
+    return render_template("7-states_list.html", data=states)
 
 
 @app.teardown_appcontext
