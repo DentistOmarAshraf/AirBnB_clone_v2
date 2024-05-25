@@ -3,8 +3,7 @@
 Fetching data from Mysql DB
 """
 
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from models import storage
 from models.state import State
 
@@ -13,12 +12,14 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def states_list():
-    """rendering state_id and state_name"""
+    """
+    rendering state_id and state_name
+    """
     all_states = storage.all(State)  # {"stateName.id" : <state_obj>}
 
     data = {}
     for k, v in all_states.items():
-        state_id = k.split(".")[1]
+        state_id = v.id
         state_name = v.name
         data[state_id] = state_name
 
@@ -29,7 +30,9 @@ def states_list():
 
 @app.teardown_appcontext
 def close_db(exeption=None):
-    """remove sql session after each requests"""
+    """
+    remove sql session after each requests
+    """
     storage.close()
 
 
