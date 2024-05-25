@@ -12,7 +12,9 @@ place_amenity = Table(
     Column("place_id", String(60), ForeignKey("places.id"),
            primary_key=True, nullable=False),
     Column("amenity_id", String(60), ForeignKey("amenities.id"),
-           primary_key=True, nullable=False)
+           primary_key=True, nullable=False),
+    mysql_charset="latin1",
+    mysql_collate="latin1_swedish_ci"
 )
 
 
