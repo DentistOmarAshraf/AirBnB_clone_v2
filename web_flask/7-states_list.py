@@ -15,11 +15,13 @@ app = Flask(__name__)
 
 @app.teardown_appcontext
 def close_db(exeption):
+    """remove sql session after each requests"""
     storage.close()
 
 
 @app.route("/states_list", strict_slashes=False)
 def state_list():
+    """rendering state_id and state_name"""
     all_states = storage.all(State)  # {"stateName.id" : <state_obj>}
 
     data = {}
