@@ -31,7 +31,7 @@ def cities_by_states():
         city = sorted(city, key=lambda city: city.name)
         all_data[st] = city
 
-    return render_template("/8-cities_by_states.html", data=all_data)
+    return render_template("8-cities_by_states.html", data=all_data)
 
 
 @app.teardown_appcontext
