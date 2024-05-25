@@ -5,22 +5,14 @@ Fetching data from Mysql DB
 
 from flask import Flask
 from flask import render_template
-import sys
-import os
 from models import storage
 from models.state import State
 
 app = Flask(__name__)
 
 
-@app.teardown_appcontext
-def close_db(exeption):
-    """remove sql session after each requests"""
-    storage.close()
-
-
 @app.route("/states_list", strict_slashes=False)
-def state_list():
+def states_list():
     """rendering state_id and state_name"""
     all_states = storage.all(State)  # {"stateName.id" : <state_obj>}
 
@@ -33,6 +25,12 @@ def state_list():
     data = dict(sorted(data.items(), key=lambda item: item[1]))
 
     return render_template("7-states_list.html", data=data)
+
+
+@app.teardown_appcontext
+def close_db(exeption=None):
+    """remove sql session after each requests"""
+    storage.close()
 
 
 if __name__ == "__main__":
