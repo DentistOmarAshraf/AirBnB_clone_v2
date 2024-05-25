@@ -18,7 +18,7 @@ def close_db(exeption):
     storage.close()
 
 
-@app.route("/states_list")
+@app.route("/states_list", strict_slashes=False)
 def state_list():
     all_states = storage.all(State)  # {"stateName.id" : <state_obj>}
 
@@ -27,6 +27,8 @@ def state_list():
         state_id = k.split(".")[1]
         state_name = v.name
         data[state_id] = state_name
+
+    data = dict(sorted(data.items(), key=lambda item: item[1]))
 
     return render_template("7-states_list.html", data=data)
 
