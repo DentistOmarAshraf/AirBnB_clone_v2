@@ -7,11 +7,11 @@
         <H1>States</H1>
 	<UL>
         {% for state, city in data.items() %}
-            <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
+            <LI>{{ state.id | safe }}: <B>{{ state.name }}</B></LI>
                 <UL>
 		{% for x in city %}
-		    <LI>{{ x.id }}: <B>{{ x.name }}</B></LI>
-		    {% endfor %}
+		    <LI>{{ x.id | safe }}: <B>{{ x.name }}</B></LI>
+		{% endfor %}
 	    	</UL>
         {% endfor %}
 	</UL>
