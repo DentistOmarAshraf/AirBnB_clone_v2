@@ -7,10 +7,11 @@ Flask Project
 from flask import Flask
 
 
-app = Flask(__name__)
+app = Flask("0-hello_route")
+app.config['ENV'] = 'production'
 
 
-@app.route("/", strict_slashes=False)
+@app.route("/airbnb-onepage/", strict_slashes=False)
 def hello_world():
     return "Hello HBNB!"
 
