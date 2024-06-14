@@ -8,7 +8,6 @@ from flask import Flask
 
 
 app = Flask("0-hello_route")
-app.config['ENV'] = 'production'
 
 
 @app.route("/airbnb-onepage/", strict_slashes=False)
